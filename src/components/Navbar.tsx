@@ -45,12 +45,12 @@ const Navbar: React.FC = () => {
                         <span style={{ fontWeight: 600 }}>RAMANI</span>
                     </Link>
 
-                    <div className="desktop-links hidden md:flex flex-row gap-8 items-center space-x-6 text-sm text-white/70">
+                    <div className="desktop-links">
                         {navItems.map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.path}
-                                className={`nav-link hover:text-white transition-colors duration-300 text-xs font-medium tracking-wide uppercase ${pathname === item.path ? 'active' : 'opacity-80'}`}
+                                className={`nav-link ${pathname === item.path ? 'active' : ''}`}
                             >
                                 {item.name}
                             </Link>
@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
                     </div>
 
                     <div className="nav-actions">
-                        <Link href="/contact" className="nav-cta-button px-5 py-2 text-xs font-bold text-white bg-blue-600 rounded-full hover:bg-blue-500 transition-all shadow-lg hover:shadow-blue-500/30 border border-white/10">
+                        <Link href="/contact" className="nav-cta-button">
                             Contact Me
                         </Link>
 

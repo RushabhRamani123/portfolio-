@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import './FrameCanvas.css';
 
-const FRAME_COUNT = 241;
-const IMAGE_PATH = (index: number) => `/sequence_png/frame-${index.toString().padStart(3, '0')}.png`;
+const FRAME_COUNT = 192;
+const IMAGE_PATH = (index: number) => `/sequence_png/frame_${index.toString().padStart(4, '0')}.png`;
 
 interface FrameCanvasProps {
     scrollProgress: number;

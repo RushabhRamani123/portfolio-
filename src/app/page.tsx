@@ -20,7 +20,7 @@ export default function About() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       touchMultiplier: 1.5,
-      lerp: 0.075,
+      lerp: 0.05,
     });
 
     const updateScroll = (time: number) => {
@@ -61,7 +61,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="app-container" ref={containerRef} style={{ height: '500vh', background: '#000000' }}>
+    <div className="app-container" ref={containerRef} style={{ height: '500vh', background: 'var(--sony-bg)' }}>
       <FrameCanvas scrollProgress={smoothProgress} />
 
       <main className="content-overlay">
@@ -156,20 +156,8 @@ export default function About() {
           }}>
             <Link
               href="/contact"
-              style={{
-                display: 'inline-block',
-                padding: '1rem 2.5rem',
-                fontSize: '1rem',
-                background: '#0050FF',
-                color: 'white',
-                border: 'none',
-                borderRadius: '99px',
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 600,
-                cursor: 'pointer',
-                boxShadow: '0 10px 30px rgba(0, 80, 255, 0.3)',
-                textDecoration: 'none'
-              }}
+              className="say-hello-button highlight-badge"
+              style={{ padding: '1rem 3rem', borderRadius: '99px', fontSize: '1rem' }}
             >
               Say Hello
             </Link>

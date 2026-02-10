@@ -16,18 +16,20 @@
     opacity: 0;
     transform: translateY(40px);
     transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
 
-    /* Premium Glass Card with enhanced blur */
-    background: rgba(10, 10, 12, 0.4);
+    /* Premium Glass Card with enhanced blur and neon tint */
+    background: rgba(10, 10, 25, 0.6);
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(130, 50, 255, 0.2);
     padding: 3rem;
     border-radius: 24px;
     box-shadow:
-        0 25px 50px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 25px 50px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(100, 50, 255, 0.15),
+        inset 0 0 20px rgba(130, 50, 255, 0.05);
 }
 
 .portfolio-section.visible .portfolio-content {
@@ -55,35 +57,37 @@
     backdrop-filter: none;
     padding: 0;
     text-align: center;
-    /* Ensure text is centered */
+}
+
+.portfolio-align-center .portfolio-content .decorative-glow,
+.portfolio-align-center .portfolio-content .corner-accent,
+.portfolio-align-center .portfolio-content .tech-decoration {
+    display: none;
 }
 
 /* Ensure left/right aligned cards have the glass effect */
 .portfolio-align-left .portfolio-content,
 .portfolio-align-right .portfolio-content {
-    /* Keep the glass styles defined in .portfolio-content */
     text-align: left;
 }
 
 .portfolio-title {
     font-size: 3.5rem;
-    /* Larger */
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 1rem;
     letter-spacing: -0.04em;
     line-height: 1.0;
-    color: #fff;
-    background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    /* Deep shadow */
+    color: #FFFFFF;
+    background: none;
+    background-clip: border-box;
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: #FFFFFF;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
 }
 
 .portfolio-subtitle {
     font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.75);
+    color: #EEEEEE;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: -0.01em;
@@ -94,12 +98,13 @@
 /* Sony-like subtle accents */
 .portfolio-overline {
     text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: #0050FF;
-    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #FFFFFF;
+    margin-bottom: 0.75rem;
     display: block;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -114,19 +119,20 @@
 
     .portfolio-section {
         padding: 0 1.5rem;
-        min-height: 80vh;
-        /* Allow some overlapping/scroll space */
+        min-height: 100vh;
+        /* changed from 80vh to prevent cut-off */
         justify-content: center;
     }
 
     .portfolio-content {
         width: 100%;
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
+        /* reduced padding */
         backdrop-filter: blur(20px);
-        /* Stronger blur on mobile for readability */
         -webkit-backdrop-filter: blur(20px);
-        background: rgba(5, 5, 5, 0.6);
-        /* Darker background for contrast against image */
+        background: rgba(10, 8, 20, 0.85);
+        /* Slightly more opaque for readability */
+        border-color: rgba(100, 50, 255, 0.2);
     }
 
     /* Force center alignment on mobile for better flow */
@@ -150,18 +156,58 @@
     .feature-card {
         align-items: center;
         text-align: center;
-        padding: 0.75rem;
+        padding: 1rem;
     }
 
     /* Adjust Stat Rows */
     .tech-stat-row {
-        flex-direction: column;
-        gap: 0.25rem;
-        text-align: center;
+        flex-direction: row;
+        /* Keep row on tablet, maybe col on mobile */
+        justify-content: space-between;
+        gap: 0.5rem;
+        text-align: left;
+    }
+
+    .tech-stat-row:last-child {
+        border-bottom: none;
     }
 
     .ts-value {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-title {
+        font-size: 2rem;
+    }
+
+    .portfolio-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .portfolio-overline {
+        font-size: 0.7rem;
+    }
+
+    .portfolio-content {
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+    }
+
+    .tech-stat-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.25rem;
+    }
+
+    .say-hello-button {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+        width: 100%;
+        /* Full width button on mobile */
+        text-align: center;
     }
 }
 
@@ -179,25 +225,29 @@
 
 .feature-card {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(100, 100, 255, 0.15);
     padding: 1rem;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(100, 50, 255, 0.08);
+    border-color: rgba(150, 50, 255, 0.4);
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(100, 50, 255, 0.15);
 }
 
 .feature-icon {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: #00D6FF;
+    margin-bottom: 0.5rem;
+    color: #FFFFFF;
+    text-shadow: 0 0 15px rgba(100, 50, 255, 0.8);
 }
 
 .fc-title {
@@ -235,26 +285,177 @@
     font-weight: 700;
     color: #fff;
     font-variant-numeric: tabular-nums;
+    text-shadow: none;
 }
 
 .highlight-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(0, 80, 255, 0.15);
-    border: 1px solid rgba(0, 80, 255, 0.3);
-    color: #00D6FF;
+    background: rgba(0, 100, 255, 0.15);
+    border: 1px solid rgba(100, 50, 255, 0.4);
+    color: #00F0FF;
     font-size: 0.8rem;
     font-weight: 600;
-    padding: 0.25rem 0.75rem;
+    padding: 0.35rem 1rem;
     border-radius: 99px;
     margin-bottom: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 100, 255, 0.15);
 }
 
 .highlight-badge:hover {
-    background: rgba(0, 80, 255, 0.3);
-    border-color: rgba(0, 80, 255, 0.5);
+    background: rgba(50, 50, 255, 0.3);
+    border-color: #00F0FF;
     transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(100, 100, 255, 0.4);
+    color: #fff;
+}
+
+/* --- New Tech Accents --- */
+.content-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.decorative-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(100, 50, 255, 0.15) 0%, transparent 60%);
+    animation: rotateGlow 15s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.corner-accent {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-color: rgba(100, 100, 255, 0.6);
+    border-style: solid;
+    transition: all 0.3s ease;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.corner-accent.top-left {
+    top: 15px;
+    left: 15px;
+    border-width: 1px 0 0 1px;
+}
+
+.corner-accent.top-right {
+    top: 15px;
+    right: 15px;
+    border-width: 1px 1px 0 0;
+}
+
+.corner-accent.bottom-left {
+    bottom: 15px;
+    left: 15px;
+    border-width: 0 0 1px 1px;
+}
+
+.corner-accent.bottom-right {
+    bottom: 15px;
+    right: 15px;
+    border-width: 0 1px 1px 0;
+}
+
+.portfolio-content:hover .corner-accent {
+    width: 25px;
+    height: 25px;
+    border-color: #9D00FF;
+    box-shadow: 0 0 10px rgba(100, 50, 255, 0.6);
+}
+
+.tech-decoration {
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: rgba(150, 100, 255, 0.5);
+    letter-spacing: 0.2em;
+    z-index: 3;
+    pointer-events: none;
+    animation: pulseText 4s ease-in-out infinite;
+}
+
+@keyframes pulseText {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Say Hello Button Styles */
+.say-hello-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #0050FF 0%, #9D00FF 100%);
+    color: white;
+    border: none;
+    border-radius: 99px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(100, 50, 255, 0.4);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    /* Ensure clickable */
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.say-hello-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #9D00FF 0%, #0050FF 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+.say-hello-button:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(100, 50, 255, 0.5);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.say-hello-button:hover::before {
+    opacity: 1;
+}
+
+.say-hello-button:active {
+    transform: translateY(-1px);
 }

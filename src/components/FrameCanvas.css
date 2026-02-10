@@ -3,7 +3,10 @@
     top: 0;
     left: 0;
     width: 100vw;
+    height: 100dvh;
+    /* Dynamic viewport height for mobile */
     height: 100vh;
+    /* Fallback */
     z-index: 0;
     background-color: var(--color-bg);
     pointer-events: none;

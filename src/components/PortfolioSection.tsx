@@ -24,14 +24,25 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({
     return (
         <section className={`portfolio-section portfolio-align-${alignment} ${visible ? 'visible' : ''}`}>
             <div className="portfolio-content">
-                {overline && <span className="portfolio-overline">{overline}</span>}
-                <h2 className="portfolio-title">
-                    {title}
-                </h2>
-                <p className="portfolio-subtitle">
-                    {subtitle}
-                </p>
-                {children && <div className="portfolio-extra-content">{children}</div>}
+                <div className="decorative-glow"></div>
+
+                {/* Tech Accents */}
+                <div className="corner-accent top-left"></div>
+                <div className="corner-accent top-right"></div>
+                <div className="corner-accent bottom-left"></div>
+                <div className="corner-accent bottom-right"></div>
+                <div className="tech-decoration">SYS_OP: {alignment.toUpperCase()}</div>
+
+                <div className="content-inner">
+                    {overline && <span className="portfolio-overline">{overline}</span>}
+                    <h2 className="portfolio-title">
+                        {title}
+                    </h2>
+                    <p className="portfolio-subtitle">
+                        {subtitle}
+                    </p>
+                    {children && <div className="portfolio-extra-content">{children}</div>}
+                </div>
             </div>
         </section>
     );
