@@ -1,64 +1,186 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React, { useEffect, useRef, useState } from 'react';
+import Lenis from 'lenis';
+import Link from 'next/link';
+import FrameCanvas from '../components/FrameCanvas';
+import PortfolioSection from '../components/PortfolioSection';
+import '../styles/index.css';
+
+export default function About() {
+  const targetProgressRef = useRef(0);
+  const [smoothProgress, setSmoothProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 2.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+      lerp: 0.075,
+    });
+
+    const updateScroll = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(updateScroll);
+    };
+    requestAnimationFrame(updateScroll);
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const rawProgress = scrollTop / docHeight;
+      targetProgressRef.current = Math.min(Math.max(rawProgress, 0), 1);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      lenis.destroy();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const animate = () => {
+      setSmoothProgress(prev => {
+        const diff = targetProgressRef.current - prev;
+        if (Math.abs(diff) < 0.0001) return targetProgressRef.current;
+        return prev + diff * 0.05;
+      });
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="app-container" ref={containerRef} style={{ height: '500vh', background: '#000000' }}>
+      <FrameCanvas scrollProgress={smoothProgress} />
+
+      <main className="content-overlay">
+
+        {/* 0% - 12% Hero: Introduction */}
+        <div style={{ position: 'absolute', top: '20vh', width: '100%' }}>
+          <PortfolioSection
+            overline="Full Stack Developer"
+            title="Rushabh Ramani"
+            subtitle="I love building things that live on the internet."
+            alignment="center"
+            visible={smoothProgress < 0.12}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+              <a href="https://github.com/RushabhRamani123" target="_blank" rel="noopener noreferrer" className="highlight-badge" style={{ textDecoration: 'none', cursor: 'pointer' }}>GitHub</a>
+              <a href="https://www.linkedin.com/in/rushabh-ramani-16jan2004/" target="_blank" rel="noopener noreferrer" className="highlight-badge" style={{ textDecoration: 'none', cursor: 'pointer' }}>LinkedIn</a>
+            </div>
+          </PortfolioSection>
         </div>
+
+        {/* 12% - 25% About Me */}
+        <div style={{ position: 'absolute', top: '100vh', width: '100%' }}>
+          <PortfolioSection
+            overline="About Me"
+            title="Problem Solver"
+            subtitle="I enjoy turning complex problems into simple, beautiful solutions."
+            alignment="left"
+            visible={smoothProgress > 0.12 && smoothProgress < 0.25}
+          />
+        </div>
+
+        {/* 25% - 40% Passion */}
+        <div style={{ position: 'absolute', top: '180vh', width: '100%' }}>
+          <PortfolioSection
+            overline="What I Do"
+            title="Full Stack Development"
+            subtitle="I love working across the entire stack — from pixels to databases."
+            alignment="right"
+            visible={smoothProgress > 0.25 && smoothProgress < 0.40}
+          />
+        </div>
+
+        {/* 40% - 55% Mindset */}
+        <div style={{ position: 'absolute', top: '260vh', width: '100%' }}>
+          <PortfolioSection
+            overline="Mindset"
+            title="Always Learning"
+            subtitle="Curious by nature. I constantly explore new technologies and ideas."
+            alignment="left"
+            visible={smoothProgress > 0.40 && smoothProgress < 0.55}
+          />
+        </div>
+
+        {/* 55% - 70% Approach */}
+        <div style={{ position: 'absolute', top: '340vh', width: '100%' }}>
+          <PortfolioSection
+            overline="Approach"
+            title="Clean Code"
+            subtitle="I believe in writing code that's readable, maintainable, and scalable."
+            alignment="right"
+            visible={smoothProgress > 0.55 && smoothProgress < 0.70}
+          />
+        </div>
+
+        {/* 70% - 80% Collaboration */}
+        <div style={{ position: 'absolute', top: '380vh', width: '100%' }}>
+          <PortfolioSection
+            overline="Team Player"
+            title="Collaboration"
+            subtitle="I thrive in teams where ideas flow and everyone grows together."
+            alignment="left"
+            visible={smoothProgress > 0.70 && smoothProgress < 0.80}
+          />
+        </div>
+
+        {/* 80% - 100% Contact CTA */}
+        <div style={{ position: 'absolute', top: '380vh', width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+          <PortfolioSection
+            title="Let's Build Something"
+            subtitle="Got a project in mind? Let's talk."
+            alignment="center"
+            visible={smoothProgress > 0.78}
+            overline="Contact"
+          />
+          <div style={{
+            textAlign: 'center',
+            marginTop: '2rem',
+            opacity: smoothProgress > 0.78 ? 1 : 0,
+            transform: smoothProgress > 0.78 ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
+            pointerEvents: smoothProgress > 0.78 ? 'all' : 'none'
+          }}>
+            <Link
+              href="/contact"
+              style={{
+                display: 'inline-block',
+                padding: '1rem 2.5rem',
+                fontSize: '1rem',
+                background: '#0050FF',
+                color: 'white',
+                border: 'none',
+                borderRadius: '99px',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 600,
+                cursor: 'pointer',
+                boxShadow: '0 10px 30px rgba(0, 80, 255, 0.3)',
+                textDecoration: 'none'
+              }}
+            >
+              Say Hello
+            </Link>
+            <div style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+              <a href="tel:+919082070031" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', cursor: 'pointer' }}>+91-9082070031</a>
+              <a href="https://github.com/RushabhRamani123" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', cursor: 'pointer' }}>GitHub</a>
+              <a href="https://www.linkedin.com/in/rushabh-ramani-16jan2004/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', cursor: 'pointer' }}>LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
       </main>
     </div>
   );

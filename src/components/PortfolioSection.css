@@ -1,0 +1,260 @@
+.portfolio-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10vw;
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #fff;
+}
+
+.portfolio-content {
+    max-width: 680px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Premium Glass Card with enhanced blur */
+    background: rgba(10, 10, 12, 0.4);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.portfolio-section.visible .portfolio-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio-section.portfolio-align-center {
+    align-items: center;
+}
+
+.portfolio-section.portfolio-align-left {
+    align-items: flex-start;
+}
+
+.portfolio-section.portfolio-align-right {
+    align-items: flex-end;
+}
+
+.portfolio-align-center .portfolio-content {
+    /* Hero text usually floats without card background to look seamless */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    padding: 0;
+    text-align: center;
+    /* Ensure text is centered */
+}
+
+/* Ensure left/right aligned cards have the glass effect */
+.portfolio-align-left .portfolio-content,
+.portfolio-align-right .portfolio-content {
+    /* Keep the glass styles defined in .portfolio-content */
+    text-align: left;
+}
+
+.portfolio-title {
+    font-size: 3.5rem;
+    /* Larger */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    color: #fff;
+    background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Deep shadow */
+}
+
+.portfolio-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    max-width: 90%;
+}
+
+
+/* Sony-like subtle accents */
+.portfolio-overline {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #0050FF;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .portfolio-title {
+        font-size: 2.5rem;
+        line-height: 1.1;
+    }
+
+    .portfolio-subtitle {
+        font-size: 1rem;
+    }
+
+    .portfolio-section {
+        padding: 0 1.5rem;
+        min-height: 80vh;
+        /* Allow some overlapping/scroll space */
+        justify-content: center;
+    }
+
+    .portfolio-content {
+        width: 100%;
+        padding: 1.5rem;
+        backdrop-filter: blur(20px);
+        /* Stronger blur on mobile for readability */
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(5, 5, 5, 0.6);
+        /* Darker background for contrast against image */
+    }
+
+    /* Force center alignment on mobile for better flow */
+    .portfolio-section.portfolio-align-left,
+    .portfolio-section.portfolio-align-right {
+        align-items: center;
+    }
+
+    .portfolio-align-left .portfolio-content,
+    .portfolio-align-right .portfolio-content {
+        text-align: center;
+        margin: 0;
+    }
+
+    /* Stack Feature Cards */
+    .feature-cards {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .feature-card {
+        align-items: center;
+        text-align: center;
+        padding: 0.75rem;
+    }
+
+    /* Adjust Stat Rows */
+    .tech-stat-row {
+        flex-direction: column;
+        gap: 0.25rem;
+        text-align: center;
+    }
+
+    .ts-value {
+        font-size: 1.25rem;
+    }
+}
+
+/* --- Amazing UI Additions --- */
+.portfolio-extra-content {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #00D6FF;
+}
+
+.fc-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.fc-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+.tech-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-stat-row:last-child {
+    border-bottom: none;
+}
+
+.ts-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.ts-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+.highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 80, 255, 0.15);
+    border: 1px solid rgba(0, 80, 255, 0.3);
+    color: #00D6FF;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.highlight-badge:hover {
+    background: rgba(0, 80, 255, 0.3);
+    border-color: rgba(0, 80, 255, 0.5);
+    transform: translateY(-2px);
+}

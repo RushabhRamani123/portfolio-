@@ -1,8 +1,70 @@
 @import "tailwindcss";
 
+/* Sony-inspired color palette and design system */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    /* Background colors */
+    --sony-bg: #000000;
+    --sony-bg-secondary: #0A0A0A;
+    --sony-bg-tertiary: #111111;
+    --sony-surface: rgba(255, 255, 255, 0.03);
+    --sony-surface-hover: rgba(255, 255, 255, 0.06);
+    
+    /* Primary accent colors */
+    --sony-accent-blue: #0050FF;
+    --sony-accent-blue-hover: #0066FF;
+    --sony-accent-cyan: #00D6FF;
+    --sony-accent-cyan-glow: rgba(0, 214, 255, 0.15);
+    
+    /* Text colors */
+    --sony-text-primary: #FFFFFF;
+    --sony-text-secondary: #B3B3B3;
+    --sony-text-muted: #666666;
+    
+    /* Border colors */
+    --sony-border: rgba(255, 255, 255, 0.08);
+    --sony-border-hover: rgba(255, 255, 255, 0.15);
+    
+    /* Gradient colors */
+    --sony-gradient-start: #0050FF;
+    --sony-gradient-end: #00D6FF;
+    
+    /* Shadows */
+    --sony-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --sony-shadow-glow: 0 0 40px rgba(0, 80, 255, 0.15);
+    
+    /* Typography */
+    --sony-font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --sony-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* Spacing */
+    --sony-spacing-xs: 0.25rem;
+    --sony-spacing-sm: 0.5rem;
+    --sony-spacing-md: 1rem;
+    --sony-spacing-lg: 1.5rem;
+    --sony-spacing-xl: 2rem;
+    --sony-spacing-2xl: 3rem;
+    --sony-spacing-3xl: 4rem;
+    
+    /* Border radius */
+    --sony-radius-sm: 4px;
+    --sony-radius-md: 8px;
+    --sony-radius-lg: 12px;
+    --sony-radius-xl: 16px;
+    
+    /* Transitions */
+    --sony-transition-fast: 0.15s ease;
+    --sony-transition-normal: 0.3s ease;
+    --sony-transition-slow: 0.5s ease;
+    
+    /* Z-index scale */
+    --sony-z-base: 1;
+    --sony-z-elevated: 10;
+    --sony-z-overlay: 100;
+    --sony-z-modal: 1000;
+    --sony-z-tooltip: 10000;
+
+    --background: #000000;
+    --foreground: #ffffff;
 }
 
 @theme inline {
@@ -12,15 +74,65 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    background: var(--sony-bg);
+    color: var(--sony-text-primary);
+    font-family: var(--sony-font-body);
+    scroll-behavior: smooth;
+}
+
+/* App Container */
+.app-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Content Overlay for sections */
+.content-overlay {
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.content-overlay > * {
+    pointer-events: auto;
+}
+
+/* Smooth transitions for links */
+a {
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Custom selection */
+::selection {
+    background: rgba(0, 80, 255, 0.3);
+    color: #fff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 214, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 214, 255, 0.5);
 }

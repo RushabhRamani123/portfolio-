@@ -1,0 +1,387 @@
+.skills-page {
+    min-height: 100vh;
+    background: #000000;
+    color: #ffffff;
+    position: relative;
+    overflow-x: hidden;
+    padding: 120px 5% 80px;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.skills-page.visible {
+    opacity: 1;
+}
+
+/* ===== Background Effects ===== */
+.bg-effects {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ambient-glow {
+    position: absolute;
+    inset: 0;
+    transition: background 0.2s ease;
+}
+
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(0, 214, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 214, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+}
+
+.gradient-orbs {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 214, 255, 0.3), transparent);
+    top: -100px;
+    right: -100px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent);
+    bottom: 20%;
+    left: -100px;
+    animation-delay: -7s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(0, 150, 255, 0.2), transparent);
+    top: 50%;
+    right: 10%;
+    animation-delay: -14s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -30px) scale(1.1); }
+    50% { transform: translate(-20px, 20px) scale(0.95); }
+    75% { transform: translate(20px, 10px) scale(1.05); }
+}
+
+/* Animated Lines */
+.animated-lines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.line {
+    position: absolute;
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 214, 255, 0.5), transparent);
+    animation: lineFall 8s linear infinite;
+    opacity: 0.3;
+}
+
+.line:nth-child(1) { left: 10%; }
+.line:nth-child(2) { left: 30%; }
+.line:nth-child(3) { left: 50%; }
+.line:nth-child(4) { left: 70%; }
+.line:nth-child(5) { left: 90%; }
+
+@keyframes lineFall {
+    0% { transform: translateY(-100px); opacity: 0; }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Back Link */
+.back-link {
+    position: fixed;
+    top: 100px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    z-index: 100;
+    padding: 10px 16px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.back-link:hover {
+    color: #00D6FF;
+    background: rgba(0, 214, 255, 0.1);
+    border-color: rgba(0, 214, 255, 0.2);
+    transform: translateX(-5px);
+}
+
+.back-arrow {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+/* Hero Section */
+.skills-hero {
+    text-align: center;
+    margin-bottom: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(0, 214, 255, 0.08);
+    border: 1px solid rgba(0, 214, 255, 0.2);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: #00D6FF;
+    margin-bottom: 30px;
+    animation: fadeIn 0.8s ease;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 30px;
+}
+
+.title-line {
+    display: block;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #00D6FF 0%, #0050FF 50%, #A855F7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+    animation: fadeIn 1s ease 0.3s backwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Constellation Wrapper */
+.constellation-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Skill Section */
+.skill-section {
+    margin-bottom: 80px;
+    animation: fadeIn 0.8s ease backwards;
+}
+
+.skill-section:nth-child(1) { animation-delay: 0.1s; }
+.skill-section:nth-child(2) { animation-delay: 0.2s; }
+.skill-section:nth-child(3) { animation-delay: 0.3s; }
+.skill-section:nth-child(4) { animation-delay: 0.4s; }
+.skill-section:nth-child(5) { animation-delay: 0.5s; }
+.skill-section:nth-child(6) { animation-delay: 0.6s; }
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.section-indicator {
+    width: 4px;
+    height: 24px;
+    border-radius: 2px;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.02em;
+}
+
+.section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+}
+
+/* Skills Orbit */
+.skills-orbit {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* Skill Node */
+.skill-node {
+    position: relative;
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: nodeIn 0.6s ease backwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes nodeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.skill-node:hover,
+.skill-node.active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.node-glow {
+    position: absolute;
+    inset: -1px;
+    border-radius: 12px;
+    background: var(--gradient);
+    opacity: 0;
+    filter: blur(20px);
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.skill-node:hover .node-glow,
+.skill-node.active .node-glow {
+    opacity: 0.3;
+}
+
+.node-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.node-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.skill-node:hover .node-logo,
+.skill-node.active .node-logo {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.node-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease;
+}
+
+.skill-node:hover .node-name,
+.skill-node.active .node-name {
+    color: #ffffff;
+}
+
+.node-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, transparent, transparent) padding-box,
+                var(--gradient) border-box;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.skill-node:hover .node-ring,
+.skill-node.active .node-ring {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .back-link {
+        position: static;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .skills-page {
+        padding: 100px 20px 60px;
+    }
+    
+    .hero-title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+    
+    .skill-node {
+        padding: 12px 18px;
+    }
+    
+    .node-name {
+        font-size: 0.85rem;
+    }
+}
