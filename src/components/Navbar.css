@@ -186,21 +186,26 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(5, 5, 8, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    z-index: 10;
+    /* Fallback */
+    height: 100dvh;
+    /* Mobile viewport fix */
+    background: #050508;
+    /* Solid background to prevent bleed-through */
+    z-index: 9990;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+    visibility: hidden;
+    /* Ensure it doesn't block clicks when hidden */
 }
 
 .mobile-menu-overlay.active {
     opacity: 1;
+    visibility: visible;
     pointer-events: all;
 }
 
