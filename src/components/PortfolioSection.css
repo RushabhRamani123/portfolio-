@@ -19,17 +19,17 @@
     position: relative;
     overflow: hidden;
 
-    /* Premium Glass Card with enhanced blur and neon tint */
-    background: rgba(10, 10, 25, 0.6);
+    /* Premium Glass Card with enhanced blur and blue tint */
+    background: rgba(10, 14, 30, 0.6);
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid rgba(130, 50, 255, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.15);
     padding: 3rem;
     border-radius: 24px;
     box-shadow:
-        0 25px 50px rgba(0, 0, 0, 0.6),
-        0 0 40px rgba(100, 50, 255, 0.15),
-        inset 0 0 20px rgba(130, 50, 255, 0.05);
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(59, 130, 246, 0.08),
+        inset 0 0 15px rgba(59, 130, 246, 0.03);
 }
 
 .portfolio-section.visible .portfolio-content {
@@ -82,7 +82,7 @@
     background-clip: border-box;
     -webkit-background-clip: border-box;
     -webkit-text-fill-color: #FFFFFF;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
 }
 
 .portfolio-subtitle {
@@ -104,7 +104,7 @@
     color: #FFFFFF;
     margin-bottom: 0.75rem;
     display: block;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -132,7 +132,7 @@
         -webkit-backdrop-filter: blur(20px);
         background: rgba(10, 8, 20, 0.85);
         /* Slightly more opaque for readability */
-        border-color: rgba(100, 50, 255, 0.2);
+        border-color: rgba(59, 130, 246, 0.15);
     }
 
     /* Force center alignment on mobile for better flow */
@@ -225,21 +225,21 @@
 
 .feature-card {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(100, 100, 255, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.12);
     padding: 1rem;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .feature-card:hover {
-    background: rgba(100, 50, 255, 0.08);
-    border-color: rgba(150, 50, 255, 0.4);
+    background: rgba(59, 130, 246, 0.06);
+    border-color: rgba(59, 130, 246, 0.25);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(100, 50, 255, 0.15);
+    box-shadow: 0 8px 15px rgba(59, 130, 246, 0.08);
 }
 
 .feature-icon {
@@ -247,7 +247,7 @@
     margin-bottom: 0.5rem;
     margin-bottom: 0.5rem;
     color: #FFFFFF;
-    text-shadow: 0 0 15px rgba(100, 50, 255, 0.8);
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
 }
 
 .fc-title {
@@ -292,9 +292,9 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(0, 100, 255, 0.15);
-    border: 1px solid rgba(100, 50, 255, 0.4);
-    color: #00F0FF;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    color: #60A5FA;
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.35rem 1rem;
@@ -302,14 +302,14 @@
     margin-bottom: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 100, 255, 0.15);
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.08);
 }
 
 .highlight-badge:hover {
-    background: rgba(50, 50, 255, 0.3);
-    border-color: #00F0FF;
+    background: rgba(59, 130, 246, 0.15);
+    border-color: #60A5FA;
     transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(100, 100, 255, 0.4);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
     color: #fff;
 }
 
@@ -325,11 +325,11 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at center, rgba(100, 50, 255, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
     animation: rotateGlow 15s linear infinite;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.3;
 }
 
 @keyframes rotateGlow {
@@ -346,7 +346,7 @@
     position: absolute;
     width: 15px;
     height: 15px;
-    border-color: rgba(100, 100, 255, 0.6);
+    border-color: rgba(59, 130, 246, 0.35);
     border-style: solid;
     transition: all 0.3s ease;
     z-index: 3;
@@ -380,8 +380,8 @@
 .portfolio-content:hover .corner-accent {
     width: 25px;
     height: 25px;
-    border-color: #9D00FF;
-    box-shadow: 0 0 10px rgba(100, 50, 255, 0.6);
+    border-color: #3B82F6;
+    box-shadow: 0 0 6px rgba(59, 130, 246, 0.3);
 }
 
 .tech-decoration {
@@ -390,7 +390,7 @@
     right: 25px;
     font-family: 'Courier New', monospace;
     font-size: 0.6rem;
-    color: rgba(150, 100, 255, 0.5);
+    color: rgba(96, 165, 250, 0.4);
     letter-spacing: 0.2em;
     z-index: 3;
     pointer-events: none;
@@ -414,14 +414,14 @@
     display: inline-block;
     padding: 1rem 3rem;
     font-size: 1rem;
-    background: linear-gradient(135deg, #0050FF 0%, #9D00FF 100%);
+    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
     color: white;
     border: none;
     border-radius: 99px;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 10px 40px rgba(100, 50, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
     text-decoration: none;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
@@ -439,7 +439,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #9D00FF 0%, #0050FF 100%);
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
     opacity: 0;
     z-index: -1;
     transition: opacity 0.4s ease;
@@ -447,9 +447,9 @@
 
 .say-hello-button:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 50px rgba(100, 50, 255, 0.5);
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.25);
     color: #fff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
 }
 
 .say-hello-button:hover::before {

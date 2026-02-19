@@ -54,7 +54,7 @@ export const BentoGridItem = ({
             )}
         >
             {/* Subtle glow on hover */}
-            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover/bento:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover/bento:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-500/3 pointer-events-none" />
             {header}
             <div className="group-hover/bento:translate-x-2 transition duration-300 relative z-10">
                 {icon}
